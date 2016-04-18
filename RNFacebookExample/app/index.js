@@ -10,8 +10,8 @@ import SignOut from './SignOut';
 
 class App extends Component {
   render() {
-    // return <SignIn />;
-    return <SignOut />
+    return <SignIn />;
+    // return <SignOut />
   }
 }
 
