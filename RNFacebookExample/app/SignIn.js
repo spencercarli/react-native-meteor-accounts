@@ -19,28 +19,7 @@ const onLoginFinished = (error, result) => {
   }
 };
 
-
-const _responseInfoCallback = (error, result) => {
-  console.log('response');
-  if (error) {
-    console.log('Error posting data: ', error);
-  } else {
-    console.log('Success posting data: ', result);
-  }
-}
-
 class SignIn extends Component {
-  componentDidMount() {
-    // Create a graph request asking for user informations with a callback to handle the response.
-    const infoRequest = new GraphRequest(
-      '/me',
-      null,
-      _responseInfoCallback,
-    );
-    // Start the graph request.
-    new GraphRequestManager().addRequest(infoRequest).start();
-  }
-
   render() {
     return (
       <View style={styles.container}>
