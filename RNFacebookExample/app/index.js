@@ -6,6 +6,7 @@ import React, {
 } from 'react-native';
 
 import Meteor, { connectMeteor } from 'react-native-meteor';
+import { LoginButton, AccessToken } from 'react-native-fbsdk';
 import SignIn from './SignIn';
 import SignOut from './SignOut';
 
@@ -19,6 +20,9 @@ class App extends Component {
   componentWillMount() {
     const url = 'http://localhost:3000/websocket';
     Meteor.connect(url);
+
+    AccessToken.getCurrentAccessToken()
+      .then((res) => console.log(res));
   }
 
   getMeteorData() {

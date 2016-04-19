@@ -6,7 +6,7 @@ import React, {
 } from 'react-native';
 
 import Button from './Button';
-import FBSDK, { LoginButton, GraphRequestManager, GraphRequest } from 'react-native-fbsdk';
+import FBSDK, { LoginButton } from 'react-native-fbsdk';
 
 const onLoginFinished = (error, result) => {
   console.log(error, result);
