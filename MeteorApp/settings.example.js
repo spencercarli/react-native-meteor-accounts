@@ -1,0 +1,8 @@
+{
+  "oauth": {
+    "facebook": {
+      "appId": "",
+      "secret": ""
+    }
+  }
+}
