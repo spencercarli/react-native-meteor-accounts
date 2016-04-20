@@ -7,11 +7,9 @@ import React, {
 } from 'react-native';
 
 import Meteor, { connectMeteor } from 'react-native-meteor';
-import { LoginButton } from 'react-native-fbsdk';
-
-import { loginWithTokens } from './fb-login';
 import SignIn from './SignIn';
 import SignOut from './SignOut';
+import { loginWithTokens } from './fb-login';
 
 @connectMeteor
 class App extends Component {
