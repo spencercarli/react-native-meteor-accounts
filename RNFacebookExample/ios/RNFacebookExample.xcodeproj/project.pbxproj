@@ -391,6 +391,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.handlebarlabs.rn-meteor-fb-demo";
 				PRODUCT_NAME = RNFacebookExample;
 			};
 			name = Debug;
@@ -411,6 +412,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.handlebarlabs.rn-meteor-fb-demo";
 				PRODUCT_NAME = RNFacebookExample;
 			};
 			name = Release;

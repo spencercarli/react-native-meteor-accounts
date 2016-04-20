@@ -2,7 +2,8 @@ import React, {
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  AsyncStorage,
 } from 'react-native';
 
 import Meteor, { connectMeteor } from 'react-native-meteor';
@@ -22,7 +23,16 @@ class App extends Component {
     Meteor.connect(url);
 
     AccessToken.getCurrentAccessToken()
-      .then((res) => console.log(res));
+      .then((res) => {
+        // This should be simplified.
+        if (res) {
+          Meteor.call('login', { facebook: res }, (err, result) => {
+            if(!err) {//save user id and token
+              AsyncStorage.setItem('reactnativemeteor_usertoken', result.token);
+            }
+          });
+        }
+      });
   }
 
   getMeteorData() {

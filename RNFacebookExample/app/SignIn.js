@@ -2,20 +2,34 @@ import React, {
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  AsyncStorage
 } from 'react-native';
 
 import Button from './Button';
-import FBSDK, { LoginButton } from 'react-native-fbsdk';
+import FBSDK, { LoginButton, AccessToken } from 'react-native-fbsdk';
+import Meteor from 'react-native-meteor';
 
 const onLoginFinished = (error, result) => {
-  console.log(error, result);
   if (error) {
-    alert("login has error: " + result.error);
+    console.log('login error', error);
   } else if (result.isCancelled) {
-    alert("login is cancelled.");
+    console.log('login cancelled');
   } else {
-    alert("login has finished with permissions: " + result.grantedPermissions)
+    const Data = Meteor.getData();
+    AccessToken.getCurrentAccessToken()
+      .then((res) => {
+        // This should be simplified.
+        if (res) {
+          Meteor.call('login', { facebook: res }, (err, result) => {
+            if(!err) {//save user id and token
+              AsyncStorage.setItem('reactnativemeteor_usertoken', result.token);
+              Data._tokenIdSaved = result.token;
+              Meteor._userIdSaved = result.id;
+            }
+          });
+        }
+      });
   }
 };
 

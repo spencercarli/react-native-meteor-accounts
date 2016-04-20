@@ -4,14 +4,14 @@ import React, {
   Text,
   View
 } from 'react-native';
-
+import Meteor from 'react-native-meteor';
 import Button from './Button';
 
 class SignOut extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button text="Sign Out" />
+        <Button text="Sign Out" onPress={() => Meteor.logout()}/>
       </View>
     );
   }
