@@ -7,7 +7,9 @@ import React, {
 } from 'react-native';
 
 import Meteor, { connectMeteor } from 'react-native-meteor';
-import { LoginButton, AccessToken } from 'react-native-fbsdk';
+import { LoginButton } from 'react-native-fbsdk';
+
+import { loginWithTokens } from './fb-login';
 import SignIn from './SignIn';
 import SignOut from './SignOut';
 
@@ -22,17 +24,7 @@ class App extends Component {
     const url = 'http://localhost:3000/websocket';
     Meteor.connect(url);
 
-    AccessToken.getCurrentAccessToken()
-      .then((res) => {
-        // This should be simplified.
-        if (res) {
-          Meteor.call('login', { facebook: res }, (err, result) => {
-            if(!err) {//save user id and token
-              AsyncStorage.setItem('reactnativemeteor_usertoken', result.token);
-            }
-          });
-        }
-      });
+    loginWithTokens();
   }
 
   getMeteorData() {
