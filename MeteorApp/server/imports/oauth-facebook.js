@@ -52,6 +52,7 @@ const registerHandler = () => {
     if (existingUser) {
       userId = existingUser._id;
 
+      // Update our data to be in line with the latest from Facebook
       const prefixedData = {};
       _.each(fields, (val, key) => {
         prefixedData[`services.facebook.${key}`] = val;
@@ -63,6 +64,7 @@ const registerHandler = () => {
       });
 
     } else {
+      // Create our user
       userId = Meteor.users.insert({
         services: {
           facebook: fields
@@ -79,6 +81,8 @@ const registerHandler = () => {
   });
 };
 
+// Gets the identity of our user and by extension checks if
+// our access token is valid.
 const getIdentity = (accessToken, fields) => {
   try {
     return HTTP.get("https://graph.facebook.com/v2.4/me", {
