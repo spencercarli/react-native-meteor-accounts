@@ -49,6 +49,8 @@ class SignIn extends React.Component {
       Accounts.createUser({ email, password }, (error) => {
         if (error) {
           this.setState({ error: error.reason });
+        } else {
+          this.onSignIn(); // temp hack?
         }
       });
     }
