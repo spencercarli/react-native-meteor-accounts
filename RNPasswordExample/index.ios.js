@@ -1,4 +1,4 @@
 import React, { AppRegistry } from 'react-native';
 import App from './app';
 
-AppRegistry.registerComponent('RNFacebookExample', () => App);
+AppRegistry.registerComponent('RNPasswordExample', () => App);
