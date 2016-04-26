@@ -4,7 +4,7 @@ import { Accounts } from 'meteor/accounts-base';
 import { HTTP } from 'meteor/http';
 import { _ } from 'meteor/underscore';
 
-const settings = Meteor.settings.oauth.facebook;
+const settings = Meteor.settings && Meteor.settings.oauth && Meteor.settings.oauth.facebook;
 
 const init = () => {
   if (!settings) return;
