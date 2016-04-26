@@ -1,4 +1,5 @@
 import React, { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import Meteor, { Accounts } from 'react-native-meteor';
 const { width } = Dimensions.get('window');
 
 class SignIn extends React.Component {
@@ -33,7 +34,11 @@ class SignIn extends React.Component {
     const { email, password } = this.state;
 
     if (this.isValid()) {
-      // do stuff
+      Meteor.loginWithPassword(email, password, (error) => {
+        if (error) {
+          this.setState({ error: error.reason });
+        }
+      });
     }
   }
 
@@ -41,7 +46,11 @@ class SignIn extends React.Component {
     const { email, password } = this.state;
 
     if (this.isValid()) {
-      // do stuff
+      Accounts.createUser({ email, password }, (error) => {
+        if (error) {
+          this.setState({ error: error.reason });
+        }
+      });
     }
   }
 
