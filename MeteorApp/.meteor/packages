@@ -21,3 +21,4 @@ insecure                # Allow all DB writes from clients (for prototyping)
 accounts-facebook
 service-configuration
 accounts-ui
+accounts-password
