@@ -8,7 +8,41 @@ class SignIn extends React.Component {
     this.state = {
       email: '',
       password: '',
+      error: null,
     };
+  }
+
+  isValid() {
+    const { email, password } = this.state;
+    let valid = false;
+
+    if (email.length > 0 && password.length > 0) {
+      valid = true;
+    }
+
+    if (email.length === 0) {
+      this.setState({ error: 'You must enter an email address' });
+    } else if (password.length === 0) {
+      this.setState({ error: 'You must enter a password' });
+    }
+
+    return valid;
+  }
+
+  onSignIn() {
+    const { email, password } = this.state;
+
+    if (this.isValid()) {
+      // do stuff
+    }
+  }
+
+  onCreateAccount() {
+    const { email, password } = this.state;
+
+    if (this.isValid()) {
+      // do stuff
+    }
   }
 
   render() {
@@ -18,19 +52,27 @@ class SignIn extends React.Component {
           style={styles.input}
           onChangeText={(email) => this.setState({email})}
           placeholder="Email"
+          autoCapitalize="none"
+          autoCorrect={false}
+          keyboardType="email-address"
         />
 
         <TextInput
           style={styles.input}
           onChangeText={(password) => this.setState({password})}
           placeholder="Password"
+          autoCapitalize="none"
+          autoCorrect={false}
+          secureTextEntry={true}
         />
 
-        <TouchableOpacity style={styles.button}>
+        <Text style={styles.error}>{this.state.error}</Text>
+
+        <TouchableOpacity style={styles.button} onPress={this.onSignIn.bind(this)}>
           <Text style={styles.buttonText}>Sign In</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={this.onCreateAccount.bind(this)}>
           <Text style={styles.buttonText}>Create Account</Text>
         </TouchableOpacity>
       </View>
@@ -68,6 +110,10 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: '500',
     fontSize: 16,
+  },
+  error: {
+    color: 'red',
+    marginBottom: 10,
   }
 });
 
