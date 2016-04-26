@@ -14,3 +14,11 @@ You'll have to do the necessary config for React Native (see tutorial) then you 
 
 - _iOS_: `npm run ios`
 - _Android_: `react-native run-around`
+
+# Email + Password
+
+Please follow [this tutorial](https://medium.com/@spencer_carli/react-native-meteor-auth-with-email-username-and-password-d2085c732276#.9hoskbvnr).
+
+After starting the meteor server run either of the commands in the `RNPasswordExample` directory.
+- _iOS_: `npm run ios`
+- _Android_: `react-native run-around`
